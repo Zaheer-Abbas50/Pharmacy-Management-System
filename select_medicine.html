@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Medicine - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px; /* Reduced font size */
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px; /* Reduced font size */
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px; /* Adjusted padding */
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .select-button {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Medicine</h1>
+        <form action="/select-medicine" method="post">
+            <label for="medicine-id">Medicine ID</label>
+            <input type="text" id="medicine-id" name="medicine_id">
+
+            <label for="medicine-name">Medicine Name</label>
+            <input type="text" id="medicine-name" name="medicine_name">
+
+            <button type="submit" name="search" value="search">Search Medicine</button>
+        </form>
+
+        {% if medicines %}
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background-color: #4CAF50; color: white;">Medicine ID</th>
+                        <th style="background-color: #4CAF50; color: white;">Medicine Name</th>
+                        <th style="background-color: #4CAF50; color: white;">Sale Price</th>
+                        <th style="background-color: #4CAF50; color: white;">Pack Size</th>
+                        <th style="background-color: #4CAF50; color: white;">Available Quantity</th>
+                        <th style="background-color: #4CAF50; color: white;" class="select-button">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medicine in medicines %}
+                    <tr>
+                        <td>{{ medicine['medicine_id'] }}</td>
+                        <td>{{ medicine['name'] }}</td>
+                        <td>{{ medicine['sale_price'] }}</td>
+                        <td>{{ medicine['pack_size'] }}</td>
+                        <td>{{ medicine['available_quantity'] }}</td>
+                        <td class="select-button">
+                            <form action="/select-medicine" method="post" style="display:inline;">
+                                <input type="hidden" name="selected_medicine" value="{{ medicine['medicine_id'] }}">
+                                <button type="submit" href="/fill-order" style="background-color: #4CAF50;">Select</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!-- templates/view_options.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Options - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .option {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .back-link {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>View Options</h1>
+        </div>
+        
+        <div class="options">
+            <div class="option">
+                <h2><a href="/view-customers">View Customers Data</a></h2>
+                <p>View existing customers data in the system</p>
+            </div>
+            <div class="option">
+                <h2><a href="view-medicines">View Medicine Data</a></h2>
+                <p>View existing medicine data in the system</p>
+            </div>
+            <div class="option">
+                <h2><a href="/view-suppliers">View Supplier Data</a></h2>
+                <p>View existing supplier data in the system</p>
+            </div>
+            <div class="option">
+                <h2><a href="{{ url_for('view_orders') }}">View Order Details</a></h2>
+                <p>View existing order details in the system</p>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        h2 {
+            font-size: 26px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #666;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+        .total {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZAS Pharmacy Management System</h1>
+        <p><strong>Bill ID:</strong> {{ bill_id }}</p>
+        <p><strong>Customer Name:</strong> {{ customer['name'] }}</p>
+        <p><strong>Customer Phone:</strong> {{ customer['phone'] }}</p>
+        <p><strong>Customer Email:</strong> {{ customer['email'] }}</p>
+        <p><strong>Printed Date:</strong> {{ printed_date }}</p>
+
+        <h2>Order Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Medicine Name</th>
+                    <th>Sale Price</th>
+                    <th>Order Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order['order_id'] }}</td>
+                    <td>{{ order['medicine_name'] }}</td>
+                    <td>{{ order['sale_price'] }}</td>
+                    <td>{{ order['order_date'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total">
+            <p><strong>Total Price:</strong> {{ total_price }}</p>
+            <p><strong>Discounted Price (2% off):</strong> {{ discounted_price }}</p>
+        </div>
+    </div>
+</body>
+</html>

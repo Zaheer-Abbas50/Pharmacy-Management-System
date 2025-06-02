@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Customer - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px; /* Reduced font size */
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px; /* Reduced font size */
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px; /* Adjusted padding */
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .select-button {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Customer</h1>
+        <form action="/select-customer" method="post">
+            <label for="customer">Customer ID</label>
+            <input type="text" id="customer" name="customer_id">
+
+            <label for="customer-name">Customer Name</label>
+            <input type="text" id="customer-naame" name="customer_name">
+
+            <button type="submit" name="search" value="search">Search Customer</button>
+        </form>
+
+        {% if customers %}
+            <table>
+                <thead>
+                    <tr>
+                        <th style="background-color: #4CAF50; color: white;">Customer ID</th>
+                        <th style="background-color: #4CAF50; color: white;">Customer Name</th>
+                        <th style="background-color: #4CAF50; color: white;">Customer  Phone no</th>
+                        <th style="background-color: #4CAF50; color: white;">Customer Email/th>
+                        <th style="background-color: #4CAF50; color: white;" class="select-button">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer['customer_id'] }}</td>
+                        <td>{{ customer['name'] }}</td>
+                        <td>{{ customer['phone'] }}</td>
+                        <td>{{ customer['email'] }}</td>
+                        <td class="select-button">
+                            <form action="/select-customer" method="post" style="display:inline;">
+                                <input type="hidden" name="selected_customer" value="{{ customer['customer_id'] }}">
+                                <button type="submit" href="/select-medicine" style="background-color: #4CAF50;">Select</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>

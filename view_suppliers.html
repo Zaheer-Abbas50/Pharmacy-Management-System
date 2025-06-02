@@ -1,0 +1,78 @@
+<!-- templates/view_customers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Suppliers - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Suppliers Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Supplier Email</th>
+                    <th>Supplier Phone</th>
+                    <!-- Add more columns based on your ERD -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.supplier_id }}</td>
+                    <td>{{ supplier.supplier_name }}</td>
+                    <td>{{ supplier.supplier_email }}</td>
+                    <td>{{ supplier.supplier_phone }}</td>
+                    <!-- Add more columns based on your ERD -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/view-options" class="back-link">Back to View Options</a>
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

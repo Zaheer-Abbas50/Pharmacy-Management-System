@@ -1,0 +1,99 @@
+<!-- templates/view_medicine.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Medicines - Pharmacy Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medicine Data</h1>
+        <form method="GET" action="/view-medicines">
+            <input type="text" name="search_name" placeholder="Search by name" value="{{ request.args.get('search_name', '') }}">
+            <input type="text" name="search_id" placeholder="Search by ID" value="{{ request.args.get('search_id', '') }}">
+            <button type="submit">Search</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Medicine ID</th>
+                    <th>Medicine Name</th>
+                    <th>Sale Price</th>
+                    <th>Packsize</th>
+                    <th>Available Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                <tr>
+                    <td>{{ medicine.medicine_id }}</td>
+                    <td>{{ medicine.name }}</td>
+                    <td>{{ medicine.sale_price }}</td>
+                    <td>{{ medicine.pack_size }}</td>
+                    <td>{{ medicine.available_quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/view-options" class="back-link">Back to View Options</a>
+    </div>
+</body>
+</html>
